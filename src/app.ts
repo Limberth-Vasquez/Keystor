@@ -38,8 +38,8 @@ export default class App {
     getRoutes();
     app.listen(port, () => logger.info(`App listening on port ${port}`));
     //Just test the mongodb connection
-    // new MongoService().getAutoReleasedDb((() => {
-    //   logger.info('Mongo connection test succeded');
-    // }));
+     new MongoService().getAutoReleasedDb((() => {
+      logger.info('Mongo connection test succeded');
+     }));
   }
 }
