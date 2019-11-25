@@ -1,5 +1,5 @@
-import { User } from "./User.model";
+import { UserModel } from "./User.model";
 
-export class KeystorModel extends User {
+export class KeystorModel extends UserModel {
     public verificationLogs: any;
 }

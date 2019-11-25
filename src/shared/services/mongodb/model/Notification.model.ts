@@ -5,4 +5,5 @@ export class NotificationModel{
       public userNotified: any;
       public seenByUser: string;
       public warehouseId?: any;
+      public active: boolean;
 }

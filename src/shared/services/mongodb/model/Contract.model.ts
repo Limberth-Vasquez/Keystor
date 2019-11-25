@@ -1,3 +1,5 @@
+import { ContractStatusModel } from "./ContractStatus.model";
+
 export class ContractModel {
     public _id?: string;
     public contractId: string;
@@ -9,7 +11,7 @@ export class ContractModel {
     public endDate: string;
     public costValue: string;
     public typeService: any;
-    public status: any;
+    public status: ContractStatusModel;
     public active: boolean;
     public aprovedKeystor: boolean;
     public description: string;

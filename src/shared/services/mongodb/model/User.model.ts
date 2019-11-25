@@ -12,4 +12,5 @@ export class UserModel{
     public phone: string;
     public locationID: LocationModel;
     public rolID: RolModel;
+    public active: boolean;
 }

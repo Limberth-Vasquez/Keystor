@@ -4,4 +4,5 @@ public adminID: string;
 public wareHouseID: string;
 public observations: string;
 public aproved: boolean;
+public active: boolean;
 }
