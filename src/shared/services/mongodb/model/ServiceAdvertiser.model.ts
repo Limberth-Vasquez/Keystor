@@ -4,4 +4,5 @@ export class ServiceAdvertiserModel {
     public name: string;
     public description: string;
     public validateKeystor: boolean;
+    public active: boolean;
 }

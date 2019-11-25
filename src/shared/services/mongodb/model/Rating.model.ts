@@ -7,4 +7,5 @@ export class RatingModel {
     public idRolWhoCreateCalification: string;
     public idWhoReceiveCalification: string;
     public idRolWhoReceiveCalification: string;
+    public active: boolean;
 }

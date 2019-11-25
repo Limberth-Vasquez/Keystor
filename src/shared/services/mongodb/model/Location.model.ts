@@ -4,4 +4,5 @@ export class LocationModel {
     public pointY: string;
     public name: string;
     public address: string;
+    public active: boolean;
 }
