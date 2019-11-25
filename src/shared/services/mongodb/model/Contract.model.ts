@@ -13,6 +13,6 @@ export class ContractModel {
     public typeService: any;
     public status: ContractStatusModel;
     public active: boolean;
-    public aprovedKeystor: boolean;
+    public aprovedKeystor?: boolean;
     public description: string;
 }

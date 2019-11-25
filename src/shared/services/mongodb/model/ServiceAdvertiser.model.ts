@@ -3,6 +3,6 @@ export class ServiceAdvertiserModel {
     public advertiserID: string;
     public name: string;
     public description: string;
-    public validateKeystor: boolean;
+    public validateKeystor?: boolean;
     public active: boolean;
 }

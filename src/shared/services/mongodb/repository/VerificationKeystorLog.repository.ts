@@ -19,7 +19,7 @@ class VerificationKeystorLogRepository extends Repository {
     delete = async (_id: string):
         Promise<any> => {
         _id = new ObjectId(_id)
-        let active = true;
+        let active = false;
         return await this.update({ active }, { _id }).then(result => {
             return { rows: result.length, result };
         })

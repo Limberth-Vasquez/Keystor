@@ -1,22 +1,19 @@
 import Repository from "./repository";
-import { TermsAndConditionsModel } from "../model/TermsAndConditions.model";
+import { FAQModel } from "../model/FAQ.model";
 let ObjectId = require('mongodb').ObjectId;
-class TermsAndConditionsRepository extends Repository {
+class FAQRepository extends Repository {
     constructor() {
-        super('TermsAndConditions');
+        super('FAQ');
     }
-
-    create = async (title: string, description: string):
+    create = async (question: string, answer: string):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ title, description, active });
+        await super.insertOne({ question, answer, active });
     }
-    find = async (where: object): Promise<TermsAndConditionsModel[]> => await super.find(where);
-
+    find = async (where: object): Promise<FAQModel[]> => await super.find(where);
     async update(set: object, where: object): Promise<any> {
         return await super.updateOne(set, where)
     }
-
     delete = async (_id: string):
         Promise<any> => {
         _id = new ObjectId(_id)
@@ -27,4 +24,4 @@ class TermsAndConditionsRepository extends Repository {
     }
 }
 
-export const termsAndConditionsModel = new TermsAndConditionsModel();
+export const faqModel = new FAQModel();

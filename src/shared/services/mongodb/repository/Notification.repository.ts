@@ -1,22 +1,19 @@
 import Repository from "./repository";
-import { TermsAndConditionsModel } from "../model/TermsAndConditions.model";
+import { NotificationModel } from "../model/Notification.model";
 let ObjectId = require('mongodb').ObjectId;
-class TermsAndConditionsRepository extends Repository {
+class NotificationRepository extends Repository {
     constructor() {
-        super('TermsAndConditions');
+        super('Notification');
     }
-
-    create = async (title: string, description: string):
+    create = async (userNotify: any, userNotified: any, seenByUser:string, eventId?:any,warehouseId?:any):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ title, description, active });
+        await super.insertOne({ userNotify, userNotified,seenByUser,eventId,warehouseId, active });
     }
-    find = async (where: object): Promise<TermsAndConditionsModel[]> => await super.find(where);
-
+    find = async (where: object): Promise<NotificationModel[]> => await super.find(where);
     async update(set: object, where: object): Promise<any> {
         return await super.updateOne(set, where)
     }
-
     delete = async (_id: string):
         Promise<any> => {
         _id = new ObjectId(_id)
@@ -27,4 +24,4 @@ class TermsAndConditionsRepository extends Repository {
     }
 }
 
-export const termsAndConditionsModel = new TermsAndConditionsModel();
+export const notificationModel = new NotificationModel();

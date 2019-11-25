@@ -5,6 +5,6 @@ export class ServicesWarehouseModel{
     public description: string;
     public typeServiceId: TypeServiceModel;
     public wareHouseId: any;
-    public validateKeystor: boolean;
+    public validateKeystor?: boolean;
     public active: boolean;
 }

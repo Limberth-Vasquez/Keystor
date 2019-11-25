@@ -1,22 +1,22 @@
 import Repository from "./repository";
-import { TermsAndConditionsModel } from "../model/TermsAndConditions.model";
+import { ContractStatusModel } from "../model/ContractStatus.model";
 let ObjectId = require('mongodb').ObjectId;
-class TermsAndConditionsRepository extends Repository {
+class ContractStatusRepository extends Repository {
     constructor() {
-        super('TermsAndConditions');
+        super('ContractStatus');
     }
-
-    create = async (title: string, description: string):
+    create = async (status: string
+        ):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ title, description, active });
+        await super.insertOne({ 
+            status
+         });
     }
-    find = async (where: object): Promise<TermsAndConditionsModel[]> => await super.find(where);
-
+    find = async (where: object): Promise<ContractStatusModel[]> => await super.find(where);
     async update(set: object, where: object): Promise<any> {
         return await super.updateOne(set, where)
     }
-
     delete = async (_id: string):
         Promise<any> => {
         _id = new ObjectId(_id)
@@ -27,4 +27,4 @@ class TermsAndConditionsRepository extends Repository {
     }
 }
 
-export const termsAndConditionsModel = new TermsAndConditionsModel();
+export const contractStatusModel = new ContractStatusModel();
