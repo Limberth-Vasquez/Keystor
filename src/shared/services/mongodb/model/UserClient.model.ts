@@ -1,5 +1,5 @@
-import { User } from "./User.model";
+import { UserModel } from "./User.model";
 
-export class UserClient extends User {
+export class UserClientModel extends UserModel {
     
 }

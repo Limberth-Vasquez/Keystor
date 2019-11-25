@@ -1,5 +1,5 @@
-import { User } from "./User.model";
+import { UserModel } from "./User.model";
 
-export class UserEvent extends User {
+export class UserEventModel extends UserModel {
     public events: any;
 }

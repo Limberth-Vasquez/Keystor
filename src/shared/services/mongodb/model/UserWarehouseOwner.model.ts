@@ -1,7 +1,6 @@
-import { User } from "./User.model";
-import { Warehouse } from "./Warehouse.model";
+import { UserModel } from "./User.model";
 
-export class UserWarehouseOwner extends User{
+export class UserWarehouseOwnerModel extends UserModel{
     public warehouses: any;
 }
 

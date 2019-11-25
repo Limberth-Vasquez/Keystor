@@ -1,4 +1,4 @@
-export class Contract {
+export class ContractModel {
     public _id?: string;
     public contractId: string;
     public warehouseId: any;

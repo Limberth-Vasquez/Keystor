@@ -1,7 +1,7 @@
-import { Rol } from "./Rol.model";
-import { Location } from "./Location.model";
+import { RolModel } from "./Rol.model";
+import { LocationModel } from "./Location.model";
 
-export class User{
+export class UserModel{
     public _id?: string;
     public personalID: string;
     public user: string;
@@ -10,7 +10,6 @@ export class User{
     public secondLastName: string;
     public email: string;
     public phone: string;
-    public locationID: Location;
-    public rolID: Rol;
-    public events: any;
+    public locationID: LocationModel;
+    public rolID: RolModel;
 }

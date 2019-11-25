@@ -1,6 +1,6 @@
-import { User } from "./User.model";
+import { UserModel } from "./User.model";
 
-export class UserAdvertiser extends User {
+export class UserAdvertiserModel extends UserModel {
     public campanyName: string;
     public idComapany: string;
     public servicesAdvertises: any;

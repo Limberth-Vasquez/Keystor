@@ -1,7 +1,8 @@
 export class NotificationModel{
       public _id: string;
-      public eventId:any;
-      public user_to_notify: any;
-      public user_who_fired_event: any;
-      public seen_by_user: string;
+      public eventId?:any;
+      public userNotify: any;
+      public userNotified: any;
+      public seenByUser: string;
+      public warehouseId?: any;
 }

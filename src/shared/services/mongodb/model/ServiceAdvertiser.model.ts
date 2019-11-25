@@ -1,4 +1,4 @@
-export class ServiceAdvertiser {
+export class ServiceAdvertiserModel {
     public _id?: string;
     public advertiserID: string;
     public name: string;

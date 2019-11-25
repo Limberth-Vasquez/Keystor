@@ -1,4 +1,4 @@
-export class Rating {
+export class RatingModel {
     public _id?: string;
     public description: string;
     public calification: number;
