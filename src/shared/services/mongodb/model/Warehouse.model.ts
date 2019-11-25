@@ -9,8 +9,8 @@ export class WarehouseModel {
     public wareHouseOwnerID: any;
     public timeOpen: Date;
     public timeClose: Date;
-    public capacity_per_pallet: Float32Array;
-    public capacity_per_space: Float32Array;
+    public capacityPerPallet: Float32Array;
+    public capacityPerSpace: Float32Array;
     public fees1: Float32Array;
     public fees2: Float32Array;
     public fees3: Float32Array;
