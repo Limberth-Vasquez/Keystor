@@ -1,15 +1,19 @@
 import Repository from "./repository";
 import { VerificationKeystorLogModel } from "../model/VerificationKeystorLog.model";
 let ObjectId = require('mongodb').ObjectId;
+
 class VerificationKeystorLogRepository extends Repository {
+
     constructor() {
         super('VerificationKeystorLog');
     }
+
     create = async (adminID: string, wareHouseID: string, observations: string, aproved: boolean):
         Promise<any> => {
             let active = true;
             await super.insertOne({ adminID, wareHouseID, observations, aproved, active});
         }
+
     find = async (where: object): Promise<VerificationKeystorLogModel[]> => await super.find(where);
 
     async update(set: object, where: object): Promise<any> {
@@ -24,6 +28,7 @@ class VerificationKeystorLogRepository extends Repository {
             return { rows: result.length, result };
         })
     }
+
 }
 
 export const verificationKeystorLogRepository = new VerificationKeystorLogRepository();
