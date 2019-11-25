@@ -6,7 +6,7 @@ const routes: { path: string, router: Function }[] = [
         path: '/', router: indexRoute
     },
     {
-        path: '/Keystor_Log', router: VerificationKeystorLog
+        path: '/VerificationKeystorLog', router: VerificationKeystorLog
     }
 ];
 
