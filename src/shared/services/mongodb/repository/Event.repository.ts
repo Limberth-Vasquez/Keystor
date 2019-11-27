@@ -32,7 +32,6 @@ class EventRepository extends Repository {
             fees2,
             fees3,
             createDate,
-            status,
             startDate,
             endDate,
             active

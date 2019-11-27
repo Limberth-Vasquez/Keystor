@@ -1,7 +1,7 @@
 import { UserModel } from "./User.model";
 
 export class UserAdvertiserModel extends UserModel {
-    public campanyName: string;
-    public idComapany: string;
+    public companyName: string;
+    public idCompany: string;
     public servicesAdvertises?: any;
 }
