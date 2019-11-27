@@ -43,13 +43,13 @@ export class VerificationKeystorLogActions {
         this.verifications = await verificationKeystorLogRepository.find({ _id });
         currentVerification = this.verifications.shift();
         try {
-            if (currentVerification.active)
+            if (currentVerification && currentVerification.active)
                 return { valid: true, code: SUCCESS_CODE, data: currentVerification };
             else
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            return { valid: false, code: ERROR_CODE, message: MISSING_FIELD_MESSAGE + TAG };
+            return { valid: false, code: ERROR_CODE, message: error};
         }
     }
 

@@ -4,7 +4,7 @@ import {
     SUCCESS_CODE, FAILURE_CODE, SUCCESS_CREATED_MESSAGE,
     FAILURE_CREATED_MESSAGE, FAILURE_FOUND_MESSAGE,
     SUCCESS_UPDATED_MESSAGE, FAILURE_UPDATED_MESSAGE,
-    FAILURE_DELETED_MESSAGE, SUCCESS_DELETED_MESSAGE
+    FAILURE_DELETED_MESSAGE, SUCCESS_DELETED_MESSAGE, ERROR_CODE
 } from '@shared/constants';
 import { NotificationModel } from '@shared/services/mongodb/model/Notification.model';
 
@@ -39,13 +39,19 @@ export class NotificationActions {
     async getById(_id: string) {
         logger.info('action=getById collection ' + TAG);
         _id = new ObjectId(_id);
-        let currentVerification = new NotificationModel();
+        let currentModel = new NotificationModel();
         this.verifications = await notificationRepository.find({ _id });
-        currentVerification = this.verifications.shift();
-        if (currentVerification.active)
-            return { valid: true, code: SUCCESS_CODE, data: currentVerification };
-        else
-            return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        currentModel = this.verifications.shift();
+        try {
+            if (currentModel && currentModel.active)
+                return { valid: true, code: SUCCESS_CODE, data: currentModel };
+            else
+                return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        } catch (error) {
+            logger.error(error);
+            
+            return { valid: false, code: ERROR_CODE, message: error};
+        }
     }
 
     async  update(_id: string, Notification: NotificationModel) {

@@ -4,7 +4,7 @@ import {
     SUCCESS_CODE, FAILURE_CODE, SUCCESS_CREATED_MESSAGE,
     FAILURE_CREATED_MESSAGE, FAILURE_FOUND_MESSAGE,
     SUCCESS_UPDATED_MESSAGE, FAILURE_UPDATED_MESSAGE,
-    FAILURE_DELETED_MESSAGE, SUCCESS_DELETED_MESSAGE
+    FAILURE_DELETED_MESSAGE, SUCCESS_DELETED_MESSAGE, ERROR_CODE
 } from '@shared/constants';
 import { PublicityModel } from '@shared/services/mongodb/model/Publicity.model';
 
@@ -39,13 +39,18 @@ export class PublicityActions {
     async getById(_id: string) {
         logger.info('action=getById collection ' + TAG);
         _id = new ObjectId(_id);
-        let currentVerification = new PublicityModel();
+        let currentModel = new PublicityModel();
         this.verifications = await publicityRepository.find({ _id });
-        currentVerification = this.verifications.shift();
-        if (currentVerification.active)
-            return { valid: true, code: SUCCESS_CODE, data: currentVerification };
-        else
-            return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        currentModel = this.verifications.shift();
+        try {
+            if (currentModel && currentModel.active)
+                return { valid: true, code: SUCCESS_CODE, data: currentModel };
+            else
+                return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        } catch (error) {
+            logger.error(error);
+            return { valid: false, code: ERROR_CODE, message: error};
+        }
     }
 
     async  update(_id: string, Publicity: PublicityModel) {

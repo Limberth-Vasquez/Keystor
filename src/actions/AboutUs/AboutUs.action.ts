@@ -3,8 +3,9 @@ import {
     SUCCESS_CODE, SUCCESS_CREATED_MESSAGE,
     FAILURE_CODE, FAILURE_CREATED_MESSAGE,
     FAILURE_FOUND_MESSAGE, SUCCESS_UPDATED_MESSAGE,
-    FAILURE_UPDATED_MESSAGE,SUCCESS_DELETED_MESSAGE,
-    FAILURE_DELETED_MESSAGE
+    FAILURE_UPDATED_MESSAGE, SUCCESS_DELETED_MESSAGE,
+    FAILURE_DELETED_MESSAGE,
+    ERROR_CODE
 } from "@shared/constants";
 import { logger } from "@shared/services/logger";
 import { AboutUsModel } from "@shared/services/mongodb/model/AboutUs.model";
@@ -41,13 +42,18 @@ export class AboutUsActions {
     async getById(_id: string) {
         logger.info('action=getById collection ' + TAG);
         _id = new ObjectId(_id);
-        let currentAboutUs = new AboutUsModel();
+        let currentModel = new AboutUsModel();
         this.aboutUs = await aboutUsRepository.find({ _id });
-        currentAboutUs = this.aboutUs.shift();
-        if (currentAboutUs.active)
-            return { valid: true, code: SUCCESS_CODE, data: currentAboutUs };
-        else
-            return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        currentModel = this.aboutUs.shift();
+        try {
+            if (currentModel && currentModel.active)
+                return { valid: true, code: SUCCESS_CODE, data: currentModel };
+            else
+                return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        } catch (error) {
+            logger.error(error);
+            return { valid: false, code: ERROR_CODE, message: error };
+        }
     }
 
     async  update(_id: string, aboutUs: AboutUsModel) {

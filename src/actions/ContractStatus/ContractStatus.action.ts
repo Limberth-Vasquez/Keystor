@@ -4,7 +4,8 @@ import {
     FAILURE_CODE, FAILURE_CREATED_MESSAGE,
     FAILURE_FOUND_MESSAGE, SUCCESS_UPDATED_MESSAGE,
     FAILURE_UPDATED_MESSAGE,SUCCESS_DELETED_MESSAGE,
-    FAILURE_DELETED_MESSAGE
+    FAILURE_DELETED_MESSAGE,
+    ERROR_CODE
 } from "@shared/constants";
 import { logger } from "@shared/services/logger";
 import { ContractStatusModel } from "@shared/services/mongodb/model/ContractStatus.model";
@@ -44,10 +45,15 @@ export class ContractStatusActions {
         let currentContractStatus = new ContractStatusModel();
         this.ContractStatus = await contractStatusRepository.find({ _id });
         currentContractStatus = this.ContractStatus.shift();
-        if (currentContractStatus.active)
-            return { valid: true, code: SUCCESS_CODE, data: currentContractStatus };
-        else
-            return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        try {
+            if (currentContractStatus)
+                return { valid: true, code: SUCCESS_CODE, data: currentContractStatus };
+            else
+                return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        } catch (error) {
+            logger.error(error);
+            return { valid: false, code: ERROR_CODE, message: error };
+        }
     }
 
     async  update(_id: string, ContractStatus: ContractStatusModel) {

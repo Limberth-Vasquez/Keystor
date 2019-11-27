@@ -4,7 +4,8 @@ import {
     FAILURE_CODE, FAILURE_CREATED_MESSAGE,
     FAILURE_FOUND_MESSAGE, SUCCESS_UPDATED_MESSAGE,
     FAILURE_UPDATED_MESSAGE,SUCCESS_DELETED_MESSAGE,
-    FAILURE_DELETED_MESSAGE
+    FAILURE_DELETED_MESSAGE,
+    ERROR_CODE
 } from "@shared/constants";
 import { logger } from "@shared/services/logger";
 import { EventModel } from "@shared/services/mongodb/model/Event.model";
@@ -65,13 +66,18 @@ export class EventActions {
     async getById(_id: string) {
         logger.info('action=getById collection ' + TAG);
         _id = new ObjectId(_id);
-        let currentEvent = new EventModel();
+        let currentModel = new EventModel();
         this.Event = await eventRepository.find({ _id });
-        currentEvent = this.Event.shift();
-        if (currentEvent.active)
-            return { valid: true, code: SUCCESS_CODE, data: currentEvent };
-        else
-            return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        currentModel = this.Event.shift();
+        try {
+            if (currentModel && currentModel.active)
+                return { valid: true, code: SUCCESS_CODE, data: currentModel };
+            else
+                return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        } catch (error) {
+            logger.error(error);
+            return { valid: false, code: ERROR_CODE, message: error};
+        }
     }
 
     async  update(_id: string, Event: EventModel) {
