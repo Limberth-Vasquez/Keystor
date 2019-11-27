@@ -4,7 +4,7 @@ import {
     SUCCESS_CODE, FAILURE_CODE, SUCCESS_CREATED_MESSAGE,
     FAILURE_CREATED_MESSAGE, FAILURE_FOUND_MESSAGE,
     SUCCESS_UPDATED_MESSAGE, FAILURE_UPDATED_MESSAGE,
-    FAILURE_DELETED_MESSAGE, SUCCESS_DELETED_MESSAGE
+    FAILURE_DELETED_MESSAGE, SUCCESS_DELETED_MESSAGE, ERROR_CODE, MISSING_FIELD_MESSAGE
 } from '@shared/constants';
 import { VerificationKeystorLogModel } from '@shared/services/mongodb/model/VerificationKeystorLog.model';
 
@@ -42,10 +42,15 @@ export class VerificationKeystorLogActions {
         let currentVerification = new VerificationKeystorLogModel();
         this.verifications = await verificationKeystorLogRepository.find({ _id });
         currentVerification = this.verifications.shift();
-        if (currentVerification.active)
-            return { valid: true, code: SUCCESS_CODE, data: currentVerification };
-        else
-            return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        try {
+            if (currentVerification.active)
+                return { valid: true, code: SUCCESS_CODE, data: currentVerification };
+            else
+                return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
+        } catch (error) {
+            logger.error(error);
+            return { valid: false, code: ERROR_CODE, message: MISSING_FIELD_MESSAGE + TAG };
+        }
     }
 
     async  update(_id: string, verificationKeystorLog: VerificationKeystorLogModel) {
