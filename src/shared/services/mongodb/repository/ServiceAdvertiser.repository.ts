@@ -1,22 +1,20 @@
 import Repository from "./repository";
-import { TermsAndConditionsModel } from "../model/TermsAndConditions.model";
+import { ServiceAdvertiserModel } from "../model/ServiceAdvertiser.model";
 let ObjectId = require('mongodb').ObjectId;
-class TermsAndConditionsRepository extends Repository {
+class ServiceAdvertiserRepository extends Repository {
     constructor() {
-        super('TermsAndConditions');
+        super('ServiceAdvertiser');
     }
-
-    create = async (title: string, description: string):
+    create = async (advertiserID: string, name: string, description: string, validateKeystor?: boolean):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ title, description, active });
+        await super.insertOne({ advertiserID, name, description, validateKeystor, active });
     }
-    find = async (where: object): Promise<TermsAndConditionsModel[]> => await super.find(where);
+    find = async (where: object): Promise<ServiceAdvertiserModel[]> => await super.find(where);
 
     async update(set: object, where: object): Promise<any> {
         return await super.updateOne(set, where)
     }
-
     delete = async (_id: string):
         Promise<any> => {
         _id = new ObjectId(_id)
@@ -27,4 +25,4 @@ class TermsAndConditionsRepository extends Repository {
     }
 }
 
-export const termsAndConditionsRepository = new TermsAndConditionsRepository();
+export const serviceAdvertiserRepository = new ServiceAdvertiserRepository();

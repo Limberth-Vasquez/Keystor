@@ -24,4 +24,4 @@ class LocationRepository extends Repository {
     }
 }
 
-export const locationModel = new LocationModel();
+export const locationRepository = new LocationRepository();

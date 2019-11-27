@@ -24,4 +24,4 @@ class FAQRepository extends Repository {
     }
 }
 
-export const faqModel = new FAQModel();
+export const fAQRepository = new FAQRepository();

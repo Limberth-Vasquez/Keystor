@@ -52,4 +52,4 @@ class EventRepository extends Repository {
     }
 }
 
-export const eventModel = new EventModel();
+export const eventRepository = new EventRepository();

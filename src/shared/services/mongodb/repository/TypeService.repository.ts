@@ -1,16 +1,17 @@
 import Repository from "./repository";
-import { AboutUsModel } from "../model/AboutUs.model";
+import { TypeServiceModel } from "../model/TypeService.model";
 let ObjectId = require('mongodb').ObjectId;
-class AboutUsRepository extends Repository {
+class TypeServiceRepository extends Repository {
     constructor() {
-        super('AboutUs');
+        super('TypeService');
     }
-    create = async (title: string, description: string):
-        Promise<any> => {
-        let active = true;
-        await super.insertOne({ title, description, active });
-    }
-    find = async (where: object): Promise<AboutUsModel[]> => await super.find(where);
+    create = async (name: string, ):
+    Promise<any> => {
+    let active = true;
+    await super.insertOne({ name, active });
+}
+    find = async (where: object): Promise<TypeServiceModel[]> => await super.find(where);
+
     async update(set: object, where: object): Promise<any> {
         return await super.updateOne(set, where)
     }
@@ -24,4 +25,4 @@ class AboutUsRepository extends Repository {
     }
 }
 
-export const aboutUsRepository = new AboutUsRepository();
+export const typeServiceRepository = new TypeServiceRepository();
