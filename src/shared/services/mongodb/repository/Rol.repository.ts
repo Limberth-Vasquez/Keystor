@@ -25,4 +25,4 @@ class RolRepository extends Repository {
     }
 }
 
-export const rolModel = new RolModel();
+export const rolRepository = new RolRepository();

@@ -27,4 +27,4 @@ class ContractStatusRepository extends Repository {
     }
 }
 
-export const contractStatusModel = new ContractStatusModel();
+export const contractStatusRepository = new ContractStatusRepository();

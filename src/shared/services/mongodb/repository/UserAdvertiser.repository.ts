@@ -1,39 +1,46 @@
 import Repository from "./repository";
-import { KeystorModel } from "../model/Keystor.model";
+import { UserAdvertiserModel } from "../model/UserAdvertiser.model";
+import { LocationModel } from "../model/Location.model";
+import { RolModel } from "../model/Rol.model";
 let ObjectId = require('mongodb').ObjectId;
-class KeystorRepository extends Repository {
+class UserAdvertiserRepository extends Repository {
     constructor() {
-        super('Keystor');
+        super('UserAdvertiser');
     }
     create = async (
-        personalID: string,
         user: string,
         name: string,
         lastName: string,
         secondLastName: string,
         email: string,
-        phone: string,
-        locationID: any,
-        rolID: any,
-        verificationLogs?: any
+        locationID: LocationModel,
+        rolID: RolModel,     
+        campanyName: string,
+        idComapany: string,  
+        phone?: string,
+        personalID?: string,
+        servicesAdvertises?: any
     ):
         Promise<any> => {
         let active = true;
         await super.insertOne({
-            personalID,
             user,
             name,
             lastName,
             secondLastName,
             email,
-            phone,
             locationID,
-            rolID,
-            verificationLogs,
-            active 
+            rolID,       
+            phone,
+            personalID,
+            campanyName,
+            idComapany,
+            servicesAdvertises,
+            active
         });
     }
-    find = async (where: object): Promise<KeystorModel[]> => await super.find(where);
+    find = async (where: object): Promise<UserAdvertiserModel[]> => await super.find(where);
+
     async update(set: object, where: object): Promise<any> {
         return await super.updateOne(set, where)
     }
@@ -47,4 +54,4 @@ class KeystorRepository extends Repository {
     }
 }
 
-export const keystorRepository = new KeystorRepository();
+export const userAdvertiserRepository = new UserAdvertiserRepository();

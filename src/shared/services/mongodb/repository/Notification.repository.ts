@@ -24,4 +24,4 @@ class NotificationRepository extends Repository {
     }
 }
 
-export const notificationModel = new NotificationModel();
+export const notificationRepository = new NotificationRepository();
