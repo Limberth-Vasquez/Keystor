@@ -1,6 +1,8 @@
 import Repository from "./repository";
 import { ContractModel } from "../model/Contract.model";
+
 let ObjectId = require('mongodb').ObjectId;
+
 class ContractRepository extends Repository {
     constructor() {
         super('Contract');
@@ -36,6 +38,7 @@ class ContractRepository extends Repository {
          });
     }
     find = async (where: object): Promise<ContractModel[]> => await super.find(where);
+    
     async update(set: object, where: object): Promise<any> {
         return await super.updateOne(set, where)
     }
@@ -49,4 +52,4 @@ class ContractRepository extends Repository {
     }
 }
 
-export const contractModel = new ContractModel();
+export const contractRepository = new ContractRepository();
