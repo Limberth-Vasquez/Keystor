@@ -14,30 +14,27 @@ class UserAdvertiserRepository extends Repository {
         secondLastName: string,
         email: string,
         locationID: LocationModel,
-        rolID: RolModel,     
+        rolID: RolModel,
         campanyName: string,
-        idComapany: string,  
+        idComapany: string,
         phone?: string,
         personalID?: string,
         servicesAdvertises?: any
     ):
         Promise<any> => {
         let active = true;
-        await super.insertOne({
-            user,
-            name,
-            lastName,
-            secondLastName,
-            email,
-            locationID,
-            rolID,       
-            phone,
-            personalID,
-            campanyName,
-            idComapany,
-            servicesAdvertises,
-            active
-        });
+        var data = { user, name, lastName, secondLastName, email, locationID, rolID, campanyName, idComapany,active};
+
+        if (phone)
+            data['phone'] = phone;
+
+        if (personalID)
+            data['personalID'] = personalID;
+
+        if (servicesAdvertises)
+            data['servicesAdvertises'] = servicesAdvertises;
+        
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<UserAdvertiserModel[]> => await super.find(where);
 
