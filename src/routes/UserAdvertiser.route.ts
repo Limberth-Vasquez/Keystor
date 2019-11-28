@@ -55,9 +55,7 @@ router.post('/create', async (req, res) => {
                 'secondLastName',
                 'email',
                 'locationID',
-                'rolID',
-                'campanyName',
-                'idComapany'];
+                'rolID'];
             for (let i of requiredParams) {
                 if (!Object.keys(req.body).find(item => {
                     return item === i
@@ -73,8 +71,8 @@ router.post('/create', async (req, res) => {
                 req.body.email,
                 req.body.locationID,
                 req.body.rolID,
-                req.body.campanyName,
-                req.body.idComapany,
+                req.body.companyName,
+                req.body.idCompany,
                 req.body.phone ,
                 req.body.personalID,
                 req.body.servicesAdvertises);

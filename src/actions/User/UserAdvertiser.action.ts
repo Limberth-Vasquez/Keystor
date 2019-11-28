@@ -13,7 +13,7 @@ let ObjectId = require('mongodb').ObjectId;
 let TAG = "UserAdvertiser";
 
 export class UserAdvertiserActions {
-    public verifications: UserAdvertiserModel[];
+    public userAdvertiser: UserAdvertiserModel[];
 
     async create(
         user,
@@ -23,11 +23,11 @@ export class UserAdvertiserActions {
         email,
         locationID,
         rolID,
-        campanyName,
-        idComapany,       
+        companyName?,
+        idCompany?,
         phone?,
         personalID?,
-        servicesAdvertises?        
+        servicesAdvertises?
     ) {
         logger.info('action=create collection ' + TAG);
         try {
@@ -38,11 +38,11 @@ export class UserAdvertiserActions {
                 secondLastName,
                 email,
                 locationID,
-                rolID,       
+                rolID,
                 phone,
                 personalID,
-                campanyName,
-                idComapany,
+                companyName,
+                idCompany,
                 servicesAdvertises
             );
             return { valid: true, code: SUCCESS_CODE, message: TAG + SUCCESS_CREATED_MESSAGE };
@@ -66,7 +66,7 @@ export class UserAdvertiserActions {
         logger.info('action=getById collection ' + TAG);
         _id = new ObjectId(_id);
         let currentModel = new UserAdvertiserModel();
-        this.verifications = await userAdvertiserRepository.find({ _id });
+        this.userAdvertiser = await userAdvertiserRepository.find({ _id });
         try {
             if (currentModel && currentModel.active)
                 return { valid: true, code: SUCCESS_CODE, data: currentModel };
@@ -74,7 +74,7 @@ export class UserAdvertiserActions {
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            return { valid: false, code: ERROR_CODE, message: error};
+            return { valid: false, code: ERROR_CODE, message: error };
         }
     }
 

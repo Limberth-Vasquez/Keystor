@@ -39,11 +39,11 @@ export class FAQActions {
     async getById(_id: string) {
         logger.info('action=getById collection ' + TAG);
         _id = new ObjectId(_id);
-        let currentVerification = new FAQModel();
+        let currentModel = new FAQModel();
         this.verifications = await fAQRepository.find({ _id });
         try {
-            if (currentVerification && currentVerification.active)
-                return { valid: true, code: SUCCESS_CODE, data: currentVerification };
+            if (currentModel && currentModel.active)
+                return { valid: true, code: SUCCESS_CODE, data: currentModel };
             else
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {

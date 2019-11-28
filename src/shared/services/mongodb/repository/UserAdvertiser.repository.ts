@@ -15,15 +15,15 @@ class UserAdvertiserRepository extends Repository {
         email: string,
         locationID: LocationModel,
         rolID: RolModel,
-        campanyName: string,
-        idComapany: string,
+        companyName?: string,
+        idCompany?: string,
         phone?: string,
         personalID?: string,
         servicesAdvertises?: any
     ):
         Promise<any> => {
         let active = true;
-        var data = { user, name, lastName, secondLastName, email, locationID, rolID, campanyName, idComapany,active};
+        var data = { user, name, lastName, secondLastName, email, locationID, rolID, active };
 
         if (phone)
             data['phone'] = phone;
@@ -33,7 +33,13 @@ class UserAdvertiserRepository extends Repository {
 
         if (servicesAdvertises)
             data['servicesAdvertises'] = servicesAdvertises;
-        
+
+        if (companyName)
+            data['companyName'] = companyName;
+
+        if (idCompany)
+            data['idCompany'] = idCompany;
+
         await super.insertOne(data);
     }
     find = async (where: object): Promise<UserAdvertiserModel[]> => await super.find(where);
