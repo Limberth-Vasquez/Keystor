@@ -90,7 +90,7 @@ router.post('/create', async (req, res) => {
 router.put('/', async (req, res) => {
     try {
         if (req.body) {
-            const requiredParams = ['id', 'columns'];
+            const requiredParams = ['id', 'values'];
             for (let i of requiredParams) {
                 if (!Object.keys(req.body).find(item => {
                     return item === i
@@ -100,7 +100,7 @@ router.put('/', async (req, res) => {
             }
             const result = await userAdvertiserActions.update(
                 req.body.id,
-                req.body.columns);
+                req.body.values);
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });

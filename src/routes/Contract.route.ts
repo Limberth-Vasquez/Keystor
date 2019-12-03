@@ -103,7 +103,7 @@ router.put('/', async (req, res) => {
             }
             const result = await contractActions.update(
                 req.body.id,
-                req.body.where);
+                req.body.values);
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });
