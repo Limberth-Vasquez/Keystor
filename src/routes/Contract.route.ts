@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/id', async (req, res) => {
+router.get('/getBy', async (req, res) => {
     try {
         const validParams = ['id'];
         for (let param in req.query) {
