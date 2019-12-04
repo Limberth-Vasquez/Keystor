@@ -8,7 +8,7 @@ import {
     UNEXPECTED_ERROR_MESSAGE, TRY_ERROR_MESSAGE,
     BAD_REQUEST_MESSAGE, MISSING_FIELD_MESSAGE
 } from '@shared/constants';
-import { ServiceAdvertiserActions } from '@actions/ServiceAdvertiser/ServiceAdvertiser.action';
+import { ServiceAdvertiserActions } from '@actions/Services/ServiceAdvertiser.action';
 
 const serviceAdvertiserActions = new ServiceAdvertiserActions();
 

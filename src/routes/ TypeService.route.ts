@@ -8,7 +8,7 @@ import {
     UNEXPECTED_ERROR_MESSAGE, TRY_ERROR_MESSAGE,
     BAD_REQUEST_MESSAGE, MISSING_FIELD_MESSAGE
 } from '@shared/constants';
-import { TypeServiceActions } from '@actions/TypeService/TypeService.action';
+import { TypeServiceActions } from '@actions/Services/TypeService.action';
 
 const typeServiceActions = new TypeServiceActions();
 
