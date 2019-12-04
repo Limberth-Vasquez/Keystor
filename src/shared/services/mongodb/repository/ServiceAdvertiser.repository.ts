@@ -10,7 +10,7 @@ class ServiceAdvertiserRepository extends Repository {
         let active = true;
         let data = { advertiserID, name, description, active };
         if (validateKeystor)
-            data['validateKeystor'] = validateKeystor
+            data['validateKeystor'] = validateKeystor;
         await super.insertOne(data);
     }
     find = async (where: object): Promise<ServiceAdvertiserModel[]> => await super.find(where);
