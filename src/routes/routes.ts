@@ -5,6 +5,7 @@ import Contract from './Contract.route';
 import UserAdvertiser from './UserAdvertiser.route';
 import AboutUs from './AboutUs.route'
 import Event from './Event.route'
+import ContractStatus from './ContractStatus.route';
 const routes: { path: string, router: Function }[] = [
     {
         path: '/', router: indexRoute
@@ -23,6 +24,9 @@ const routes: { path: string, router: Function }[] = [
     },
     {
         path: '/Event', router: Event
+    },
+    {
+        path: '/ContractStatus', router: ContractStatus
     }
 
 ];

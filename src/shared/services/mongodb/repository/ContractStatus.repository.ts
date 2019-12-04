@@ -6,12 +6,12 @@ class ContractStatusRepository extends Repository {
         super('ContractStatus');
     }
     create = async (status: string
-        ):
+    ):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ 
-            status
-         });
+        await super.insertOne({
+            status, active
+        });
     }
     find = async (where: object): Promise<ContractStatusModel[]> => await super.find(where);
     async update(set: object, where: object): Promise<any> {
