@@ -5,6 +5,8 @@ import Contract from './Contract.route';
 import ContractStatus from './ContractStatus.route';
 import UserAdvertiser from './UserAdvertiser.route';
 import UserClient from './UserClient.route';
+import UserEvent from './UserEvent.route';
+import UserWarehouseOwner from './UserWarehouseOwner.route';
 import AboutUs from './AboutUs.route';
 import Event from './Event.route';
 import Warehouse from './Warehouse.route';
@@ -36,6 +38,12 @@ const routes: { path: string, router: Function }[] = [
         path: '/User/Client', router: UserClient
     },
     {
+        path: '/User/Event', router: UserEvent
+    },
+    {
+        path: '/User/WarehouseOwner', router: UserWarehouseOwner
+    },
+    {
         path: '/AboutUs', router: AboutUs
     },
     {
@@ -45,13 +53,13 @@ const routes: { path: string, router: Function }[] = [
         path: '/Warehouse', router: Warehouse
     },
     {
-        path: '/TypeService', router: TypeService
+        path: '/Service/Type', router: TypeService
     },
     {
-        path: '/ServiceAdvertiser', router: ServiceAdvertiser
+        path: '/Service/Advertiser', router: ServiceAdvertiser
     },
     {
-        path: '/ServiceWareHouse', router: ServiceWareHouse
+        path: '/Service/WareHouse', router: ServiceWareHouse
     },
     {
         path: '/TermsAndConditions', router: TermsAndConditions
