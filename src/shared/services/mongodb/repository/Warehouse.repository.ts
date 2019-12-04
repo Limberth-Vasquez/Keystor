@@ -24,7 +24,7 @@ class WarehouseRepository extends Repository {
         photo3?: string):
         Promise<any> => {
         let active = true;
-        await super.insertOne({
+        let data = {
             name,
             email,
             locationID,
@@ -35,13 +35,24 @@ class WarehouseRepository extends Repository {
             capacityPerPallet,
             capacityPerSpace,
             fees1,
-            fees3,
-            fees2,
-            photo,
-            photo2,
-            photo3,
             active
-        });
+        };
+        if (fees2)
+            data['fees2'] = fees2;
+
+        if (fees3)
+            data['fees3'] = fees3;
+
+        if (photo)
+            data['photo'] = photo;
+
+        if (photo2)
+            data['photo2'] = photo2;
+
+        if (photo3)
+            data['photo3'] = photo3;
+            
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<WarehouseModel[]> => await super.find(where);
 

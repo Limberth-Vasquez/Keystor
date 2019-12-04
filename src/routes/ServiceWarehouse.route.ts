@@ -59,7 +59,7 @@ router.post('/create', async (req, res) => {
             const result = await serviceWarehouseActions.create(
                 req.body.description,
                 req.body.typeServiceId,
-                req.body.wareHouseI,
+                req.body.wareHouseId,
                 req.body.validateKeystor);
             res.json(result);
         } else {

@@ -14,25 +14,29 @@ class UserWarehouseOwnerRepository extends Repository {
         secondLastName: string,
         email: string,
         locationID: LocationModel,
-        rolID: RolModel,       
+        rolID: RolModel,
         phone?: string,
         personalID?: string,
         warehouses?: any):
         Promise<any> => {
         let active = true;
-        await super.insertOne({
+        let data = {
             user,
             name,
             lastName,
             secondLastName,
             email,
             locationID,
-            rolID,       
+            rolID,
             phone,
-            personalID,
-            warehouses,
             active
-        });
+        };
+        if (personalID)
+            data['personalID'] = personalID;
+
+        if (warehouses)
+            data['warehouses'] = warehouses;
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<UserWarehouseOwnerModel[]> => await super.find(where);
 

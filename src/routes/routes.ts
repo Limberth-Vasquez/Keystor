@@ -45,25 +45,25 @@ const routes: { path: string, router: Function }[] = [
         path: '/Warehouse', router: Warehouse
     },
     {
-        path: '/TypeService', router: Warehouse
+        path: '/TypeService', router: TypeService
     },
     {
-        path: '/ServiceAdvertiser', router: Warehouse
+        path: '/ServiceAdvertiser', router: ServiceAdvertiser
     },
     {
-        path: '/ServiceWareHouse', router: Warehouse
+        path: '/ServiceWareHouse', router: ServiceWareHouse
     },
     {
-        path: '/TermsAndConditions', router: Warehouse
+        path: '/TermsAndConditions', router: TermsAndConditions
     },
     {
-        path: '/Rol', router: Warehouse
+        path: '/Rol', router: Rol
     },
     {
-        path: '/Rating', router: Warehouse
+        path: '/Rating', router: Rating
     },
     {
-        path: '/Publicity', router: Warehouse
+        path: '/Publicity', router: Publicity
     }
 
 ];

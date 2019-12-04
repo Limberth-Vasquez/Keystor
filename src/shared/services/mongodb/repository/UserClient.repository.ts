@@ -14,23 +14,27 @@ class UserClientRepository extends Repository {
         secondLastName: string,
         email: string,
         locationID: LocationModel,
-        rolID: RolModel,       
+        rolID: RolModel,
         phone?: string,
         personalID?: string):
         Promise<any> => {
         let active = true;
-        await super.insertOne({
+        let data = {
             user,
             name,
             lastName,
             secondLastName,
             email,
             locationID,
-            rolID,       
-            phone,
-            personalID,
+            rolID,
             active
-        });
+        };
+        if (phone)
+            data['data'] = data;
+        if (personalID)
+            data['personalID'] = personalID
+
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<UserClientModel[]> => await super.find(where);
 
