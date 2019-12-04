@@ -2,6 +2,7 @@
 import indexRoute from './index.route';
 import VerificationKeystorLog from './VerificationKeystorLog.route';
 import Contract from './Contract.route';
+import ContractStatus from './ContractStatus.route';
 import UserAdvertiser from './UserAdvertiser.route';
 import UserClient from './UserClient.route';
 import AboutUs from './AboutUs.route';
@@ -21,6 +22,9 @@ const routes: { path: string, router: Function }[] = [
     },
     {
         path: '/VerificationKeystorLog', router: VerificationKeystorLog
+    },
+    {
+        path: '/ContractStatus', router: ContractStatus
     },
     {
         path: '/Contract', router: Contract
