@@ -9,7 +9,10 @@ class ServicesWarehouseRepository extends Repository {
     create = async (description: string, typeServiceId: TypeServiceModel, wareHouseId: any, validateKeystor?: boolean):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ description, typeServiceId, wareHouseId, validateKeystor, active });
+        let data = { description, typeServiceId, wareHouseId, active };
+        if (validateKeystor)
+            data['validateKeystor'] = validateKeystor;
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<ServicesWarehouseModel[]> => await super.find(where);
 

@@ -8,23 +8,23 @@ class ContractRepository extends Repository {
         super('Contract');
     }
     create = async (
-        contractId: string, 
+        contractId: string,
         warehouseId: any,
-        userClientID:any,
-        name:string,
+        userClientID: any,
+        name: string,
         createDate: Date,
         endDate: Date,
         costValue: string,
         typeService: any,
         status: any,
         description: string,
-        aprovedKeystor?:boolean
-        ):
+        aprovedKeystor?: boolean
+    ):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ 
-            contractId, 
-            warehouseId, 
+        let data = {
+            contractId,
+            warehouseId,
             active,
             userClientID,
             name,
@@ -33,12 +33,15 @@ class ContractRepository extends Repository {
             costValue,
             typeService,
             status,
-            aprovedKeystor,
             description
-         });
+        };
+        if (aprovedKeystor)
+            data['aprovedKeystor'] = aprovedKeystor;
+            
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<ContractModel[]> => await super.find(where);
-    
+
     async update(set: object, where: object): Promise<any> {
         return await super.updateOne(set, where)
     }

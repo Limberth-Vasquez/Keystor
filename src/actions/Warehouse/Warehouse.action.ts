@@ -15,7 +15,8 @@ let TAG = "Warehouse";
 export class WarehouseActions {
     public verifications: WarehouseModel[];
 
-    async create(name,
+    async create(
+        name,
         email,
         locationID,
         country,
@@ -79,7 +80,7 @@ export class WarehouseActions {
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            return { valid: false, code: ERROR_CODE, message: error};
+            return { valid: false, code: ERROR_CODE, message: error };
         }
     }
 

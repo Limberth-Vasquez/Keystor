@@ -8,7 +8,10 @@ class ServiceAdvertiserRepository extends Repository {
     create = async (advertiserID: string, name: string, description: string, validateKeystor?: boolean):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ advertiserID, name, description, validateKeystor, active });
+        let data = { advertiserID, name, description, active };
+        if (validateKeystor)
+            data['validateKeystor'] = validateKeystor
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<ServiceAdvertiserModel[]> => await super.find(where);
 

@@ -16,24 +16,24 @@ export class RatingActions {
     public verifications: RatingModel[];
 
     async create(
-        description, 
-            calification, 
-            isPublic, 
-            idWhoCreateCalification,
-            idRolWhoCreateCalification,
-            idWhoReceiveCalification,
-            idRolWhoReceiveCalification
+        description,
+        calification,
+        isPublic,
+        idWhoCreateCalification,
+        idRolWhoCreateCalification,
+        idWhoReceiveCalification,
+        idRolWhoReceiveCalification
     ) {
         logger.info('action=create collection ' + TAG);
         try {
             await ratingRepository.create(
-                description, 
-            calification, 
-            isPublic, 
-            idWhoCreateCalification,
-            idRolWhoCreateCalification,
-            idWhoReceiveCalification,
-            idRolWhoReceiveCalification
+                description,
+                calification,
+                isPublic,
+                idWhoCreateCalification,
+                idRolWhoCreateCalification,
+                idWhoReceiveCalification,
+                idRolWhoReceiveCalification
             );
             return { valid: true, code: SUCCESS_CODE, message: TAG + SUCCESS_CREATED_MESSAGE };
         } catch (error) {
@@ -65,7 +65,7 @@ export class RatingActions {
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            return { valid: false, code: ERROR_CODE, message: error};
+            return { valid: false, code: ERROR_CODE, message: error };
         }
     }
 

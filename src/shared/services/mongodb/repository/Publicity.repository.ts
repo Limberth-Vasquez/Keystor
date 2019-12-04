@@ -8,7 +8,15 @@ class PublicityRepository extends Repository {
     create = async (title: string, photo: string, link?: string, photo2?: string, photo3?: string):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ title, photo, link, photo2, photo3, active });
+        let data = { title, photo ,active};
+        if (link)
+            data['link'] = link;
+        if (photo2)
+            data['photo2'] = photo2;
+        if (photo3)
+            data['photo3'] = photo3;
+
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<PublicityModel[]> => await super.find(where);
 

@@ -67,6 +67,7 @@ router.post('/create', async (req, res) => {
                 }
             }
             const result = await warehouseActions.create(
+                req.body.name,
                 req.body.email,
                 req.body.locationID,
                 req.body.country,

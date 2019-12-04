@@ -19,7 +19,7 @@ class KeystorRepository extends Repository {
     ):
         Promise<any> => {
         let active = true;
-        await super.insertOne({
+        let data = {
             personalID,
             user,
             name,
@@ -29,9 +29,13 @@ class KeystorRepository extends Repository {
             phone,
             locationID,
             rolID,
-            verificationLogs,
-            active 
-        });
+            active
+        };
+        
+        if (verificationLogs)
+            data['verificationLogs'] = verificationLogs;
+
+        await super.insertOne({data});
     }
     find = async (where: object): Promise<KeystorModel[]> => await super.find(where);
     async update(set: object, where: object): Promise<any> {

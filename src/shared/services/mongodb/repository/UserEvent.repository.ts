@@ -14,25 +14,32 @@ class UserEventRepository extends Repository {
         secondLastName: string,
         email: string,
         locationID: LocationModel,
-        rolID: RolModel,       
+        rolID: RolModel,
         phone?: string,
         personalID?: string,
         events?: any):
         Promise<any> => {
         let active = true;
-        await super.insertOne({
+        let data = {
             user,
             name,
             lastName,
             secondLastName,
             email,
             locationID,
-            rolID,       
-            phone,
-            personalID,
-            events,
+            rolID,
             active
-        });
+        };
+        if (phone)
+            data['phone'] = phone;
+
+        if (personalID)
+        data['personalID'] = personalID;
+
+        if (events)
+            data['pheventsone'] = events;
+            
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<UserEventModel[]> => await super.find(where);
 

@@ -6,11 +6,11 @@ class EventRepository extends Repository {
         super('Event');
     }
     create = async (
-        nameEvent: string, 
+        nameEvent: string,
         email: string,
         phone: string,
-        locationID:any,
-        idUserEvent:any,
+        locationID: any,
+        idUserEvent: any,
         description: string,
         fees1: Float32Array,
         createDate: Date,
@@ -18,24 +18,29 @@ class EventRepository extends Repository {
         endDate: Date,
         fees2?: Float32Array,
         fees3?: Float32Array
-        ):
+    ):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ 
-            nameEvent, 
-            email, 
+        let data = {
+            nameEvent,
+            email,
             phone,
             locationID,
             idUserEvent,
             description,
             fees1,
-            fees2,
-            fees3,
             createDate,
             startDate,
             endDate,
             active
-         });
+        };
+        if (fees2)
+            data['fees2'] = fees2;
+
+        if (fees3)
+            data['fees3'] = fees3;
+
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<EventModel[]> => await super.find(where);
     async update(set: object, where: object): Promise<any> {

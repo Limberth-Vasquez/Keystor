@@ -5,10 +5,18 @@ class NotificationRepository extends Repository {
     constructor() {
         super('Notification');
     }
-    create = async (userNotify: any, userNotified: any, seenByUser:string, eventId?:any,warehouseId?:any):
+    create = async (userNotify: any, userNotified: any, seenByUser: string, eventId?: any, warehouseId?: any):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ userNotify, userNotified,seenByUser,eventId,warehouseId, active });
+        let data = {
+            userNotify, userNotified, seenByUser, active
+        }
+        if (eventId)
+            data['eventId'] = eventId;
+        if (warehouseId)
+            data['warehouseId'] = warehouseId
+
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<NotificationModel[]> => await super.find(where);
     async update(set: object, where: object): Promise<any> {
