@@ -8,7 +8,7 @@ import {
     UNEXPECTED_ERROR_MESSAGE, TRY_ERROR_MESSAGE,
     BAD_REQUEST_MESSAGE, MISSING_FIELD_MESSAGE
 } from '@shared/constants';
-import { ServiceWarehouseActions } from '@actions/services/ServicesWarehouse.action';
+import { ServiceWarehouseActions } from '@actions/Services/ServicesWarehouse.action';
 
 const serviceWarehouseActions = new ServiceWarehouseActions();
 
