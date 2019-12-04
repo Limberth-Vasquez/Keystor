@@ -67,17 +67,17 @@ router.post('/create', async (req, res) => {
                 }
             }
             const result = await eventActions.create(
-                req.body.eventId,
-                req.body.warehouseId,
-                req.body.userClientID,
-                req.body.name,
-                req.body.createDate,
-                req.body.endDate,
-                req.body.costValue,
-                req.body.typeService,
-                req.body.status,
+                req.body.nameEvent,
+                req.body.email,
+                req.body.phone,
+                req.body.locationID,
+                req.body.idUserEvent,
                 req.body.description,
-                req.body.aprovedKeystor);
+                req.body.fees1,
+                req.body.createDate,
+                req.body.startDate,
+                req.body.endDate
+                );
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });
