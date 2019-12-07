@@ -13,7 +13,7 @@ let ObjectId = require('mongodb').ObjectId;
 let TAG = "UserAdvertiser";
 
 export class UserAdvertiserActions {
-    public userAdvertiser: UserAdvertiserModel[];
+    public verifications: UserAdvertiserModel[];
 
     async create(
         user,
@@ -66,7 +66,8 @@ export class UserAdvertiserActions {
         logger.info('action=getById collection ' + TAG);
         _id = new ObjectId(_id);
         let currentModel = new UserAdvertiserModel();
-        this.userAdvertiser = await userAdvertiserRepository.find({ _id });
+        this.verifications = await userAdvertiserRepository.find({ _id });
+        currentModel = this.verifications.shift();
         try {
             if (currentModel && currentModel.active)
                 return { valid: true, code: SUCCESS_CODE, data: currentModel };

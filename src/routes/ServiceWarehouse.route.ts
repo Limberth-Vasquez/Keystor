@@ -15,8 +15,8 @@ const serviceWarehouseActions = new ServiceWarehouseActions();
 router.get('/', async (req, res) => {
     try {
         let where = { active: true };
-        const users = await serviceWarehouseActions.getAll(where);
-        res.json(users);
+        const result = await serviceWarehouseActions.getAll(where);
+        res.json(result);
     } catch (e) {
         res.status(500).json({ message: UNEXPECTED_ERROR_MESSAGE });
         logger.error(TRY_ERROR_MESSAGE + 'get ' + TAG);
@@ -36,8 +36,8 @@ router.get('/getBy', async (req, res) => {
             }
         }
         const id = req.query['id'];
-        const users = await serviceWarehouseActions.getById(id);
-        res.json(users);
+        const result = await serviceWarehouseActions.getById(id);
+        res.json(result);
     } catch (e) {
         res.status(500).json({ message: UNEXPECTED_ERROR_MESSAGE });
         logger.error(TRY_ERROR_MESSAGE + 'get ' + TAG);

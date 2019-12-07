@@ -10,7 +10,6 @@ import {
 import { logger } from "@shared/services/logger";
 import { AboutUsModel } from "@shared/services/mongodb/model/AboutUs.model";
 
-//
 let TAG = "AboutUs";
 let ObjectId = require('mongodb').ObjectId;
 

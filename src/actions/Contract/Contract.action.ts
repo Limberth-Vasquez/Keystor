@@ -17,12 +17,32 @@ let ObjectId = require('mongodb').ObjectId;
 export class ContractActions {
     private contract: ContractModel[];
 
-    async create(contractId, warehouseId, userClientID, name, createDate, endDate,
-        costValue, typeService, status, description, aprovedKeystor?) {
+    async create(
+        contractId, 
+        warehouseId, 
+        userClientID, 
+        name, 
+        createDate, 
+        endDate,
+        costValue, 
+        typeService, 
+        status, 
+        description, 
+        aprovedKeystor?) {
         logger.info('action=create collection ' + TAG);
         try {
-            await contractRepository.create(contractId, warehouseId, userClientID, name, createDate, endDate,
-                costValue, typeService, status, description, aprovedKeystor);
+            await contractRepository.create(
+                contractId, 
+                warehouseId,
+                userClientID,
+                name,
+                createDate, 
+                endDate,
+                costValue, 
+                typeService, 
+                status, 
+                description, 
+                aprovedKeystor);
             return { valid: true, code: SUCCESS_CODE, message: TAG + SUCCESS_CREATED_MESSAGE };
         } catch (error) {
             logger.error(error);

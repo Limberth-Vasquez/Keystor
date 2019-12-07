@@ -25,7 +25,6 @@ class ContractRepository extends Repository {
         let data = {
             contractId,
             warehouseId,
-            active,
             userClientID,
             name,
             createDate,
@@ -33,7 +32,8 @@ class ContractRepository extends Repository {
             costValue,
             typeService,
             status,
-            description
+            description,
+            active
         };
         if (aprovedKeystor)
             data['aprovedKeystor'] = aprovedKeystor;

@@ -8,15 +8,15 @@ import {
     UNEXPECTED_ERROR_MESSAGE, TRY_ERROR_MESSAGE,
     BAD_REQUEST_MESSAGE, MISSING_FIELD_MESSAGE
 } from '@shared/constants';
-import { ContractStatusActions } from '@actions/ContractStatus/ContractStatus.action';
+import { ContractStatusActions } from '@actions/Contract/ContractStatus.action';
 
 const contractStatusActions = new ContractStatusActions();
 
 router.get('/', async (req, res) => {
     try {
         let where = { active: true };
-        const users = await contractStatusActions.getAll(where);
-        res.json(users);
+        const result = await contractStatusActions.getAll(where);
+        res.json(result);
     } catch (e) {
         res.status(500).json({ message: UNEXPECTED_ERROR_MESSAGE });
         logger.error(TRY_ERROR_MESSAGE + 'get ' + TAG);
@@ -37,8 +37,8 @@ router.get('/getBy', async (req, res) => {
             }
         }
         const id = req.query['id'];
-        const users = await contractStatusActions.getById(id);
-        res.json(users);
+        const result = await contractStatusActions.getById(id);
+        res.json(result);
     } catch (e) {
         res.status(500).json({ message: UNEXPECTED_ERROR_MESSAGE });
         logger.error(TRY_ERROR_MESSAGE + 'get ' + TAG);

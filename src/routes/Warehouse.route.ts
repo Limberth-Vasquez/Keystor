@@ -15,8 +15,8 @@ const warehouseActions = new WarehouseActions();
 router.get('/', async (req, res) => {
     try {
         let where = { active: true };
-        const users = await warehouseActions.getAll(where);
-        res.json(users);
+        const result = await warehouseActions.getAll(where);
+        res.json(result);
     } catch (e) {
         res.status(500).json({ message: UNEXPECTED_ERROR_MESSAGE });
         logger.error(TRY_ERROR_MESSAGE + 'get ' + TAG);
@@ -37,8 +37,8 @@ router.get('/getBy', async (req, res) => {
             }
         }
         const id = req.query['id'];
-        const users = await warehouseActions.getById(id);
-        res.json(users);
+        const result = await warehouseActions.getById(id);
+        res.json(result);
     } catch (e) {
         res.status(500).json({ message: UNEXPECTED_ERROR_MESSAGE });
         logger.error(TRY_ERROR_MESSAGE + 'get ' + TAG);
