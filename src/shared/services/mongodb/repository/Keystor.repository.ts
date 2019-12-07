@@ -1,41 +1,46 @@
 import Repository from "./repository";
 import { KeystorModel } from "../model/Keystor.model";
+import { LocationModel } from "../model/Location.model";
+import { RolModel } from "../model/Rol.model";
 let ObjectId = require('mongodb').ObjectId;
 class KeystorRepository extends Repository {
     constructor() {
         super('Keystor');
     }
     create = async (
-        personalID: string,
         user: string,
         name: string,
         lastName: string,
         secondLastName: string,
         email: string,
-        phone: string,
-        locationID: any,
-        rolID: any,
+        locationID: LocationModel,
+        rolID: RolModel,
+        phone?: string,
+        personalID?: string,
         verificationLogs?: any
     ):
         Promise<any> => {
         let active = true;
         let data = {
-            personalID,
             user,
             name,
             lastName,
             secondLastName,
             email,
-            phone,
             locationID,
             rolID,
             active
         };
-        
+        if (phone)
+            data['phone'] = phone;
+
+        if (personalID)
+        data['personalID'] = personalID;
+
         if (verificationLogs)
             data['verificationLogs'] = verificationLogs;
 
-        await super.insertOne({data});
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<KeystorModel[]> => await super.find(where);
     async update(set: object, where: object): Promise<any> {

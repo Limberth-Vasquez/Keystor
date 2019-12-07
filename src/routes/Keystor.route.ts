@@ -1,21 +1,21 @@
 'use strict';
 let express = require('express');
 let router = express.Router();
-let TAG = "UserEvent";
+let TAG = "Keystor";
 import { logger } from '@services/logger';
 import {
     FAILURE_CODE, INVALID_PARAMETER_MESSAGE,
     UNEXPECTED_ERROR_MESSAGE, TRY_ERROR_MESSAGE,
     BAD_REQUEST_MESSAGE, MISSING_FIELD_MESSAGE
 } from '@shared/constants';
-import { UserEventActions } from '@actions/User/UserEvent.action';
+import { KeystorActions } from '@actions/Keystor/Keystor.action';
 
-const userEventActions = new UserEventActions();
+const keystorActions = new KeystorActions();
 
 router.get('/', async (req, res) => {
     try {
         let where = { active: true };
-        const users = await userEventActions.getAll(where);
+        const users = await keystorActions.getAll(where);
         res.json(users);
     } catch (e) {
         res.status(500).json({ message: UNEXPECTED_ERROR_MESSAGE });
@@ -37,7 +37,7 @@ router.get('/getBy', async (req, res) => {
             }
         }
         const id = req.query['id'];
-        const users = await userEventActions.getById(id);
+        const users = await keystorActions.getById(id);
         res.json(users);
     } catch (e) {
         res.status(500).json({ message: UNEXPECTED_ERROR_MESSAGE });
@@ -56,7 +56,7 @@ router.post('/create', async (req, res) => {
                 'secondLastName',
                 'email',
                 'locationID',
-                'rolID']
+                'rolID'];
             for (let i of requiredParams) {
                 if (!Object.keys(req.body).find(item => {
                     return item === i
@@ -64,7 +64,7 @@ router.post('/create', async (req, res) => {
                     return res.status(400).json({ message: MISSING_FIELD_MESSAGE + i });
                 }
             }
-            const result = await userEventActions.create(
+            const result = await keystorActions.create(                
                 req.body.user,
                 req.body.name,
                 req.body.lastName,
@@ -74,8 +74,7 @@ router.post('/create', async (req, res) => {
                 req.body.rolID,
                 req.body.phone,
                 req.body.personalID,
-                req.body.events
-            );
+                req.body.verificationLogs);
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });
@@ -98,7 +97,7 @@ router.put('/', async (req, res) => {
                     return res.status(400).json({ message: MISSING_FIELD_MESSAGE + i });
                 }
             }
-            const result = await userEventActions.update(
+            const result = await keystorActions.update(
                 req.body.id,
                 req.body.values);
             res.json(result);
@@ -123,7 +122,7 @@ router.delete('/', async (req, res) => {
                     return res.status(400).json({ message: MISSING_FIELD_MESSAGE + i });
                 }
             }
-            const result = await userEventActions.delete(req.body.id);
+            const result = await keystorActions.delete(req.body.id);
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });

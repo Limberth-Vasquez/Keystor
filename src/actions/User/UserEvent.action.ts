@@ -15,7 +15,8 @@ let TAG = "UserEvent";
 export class UserEventActions {
     public verifications: UserEventModel[];
 
-    async create(user,
+    async create(
+        user,
         name,
         lastName,
         secondLastName,

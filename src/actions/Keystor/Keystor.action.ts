@@ -16,29 +16,29 @@ export class KeystorActions {
     public verifications: KeystorModel[];
 
     async create(
-        personalID,
         user,
         name,
         lastName,
         secondLastName,
         email,
-        rolID,
+        locationID,
+        rolID,       
         phone?,
-        locationID?,
+        personalID?,
         verificationLogs?
     ) {
         logger.info('action=create collection ' + TAG);
         try {
             await keystorRepository.create( 
-                personalID,
                 user,
                 name,
                 lastName,
                 secondLastName,
                 email,
-                phone,
                 locationID,
-                rolID,
+                rolID,       
+                phone,
+                personalID,
                 verificationLogs
                 );
             return { valid: true, code: SUCCESS_CODE, message: TAG + SUCCESS_CREATED_MESSAGE };

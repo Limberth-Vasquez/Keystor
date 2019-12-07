@@ -17,6 +17,11 @@ import TermsAndConditions from './TermsAndConditions.route';
 import Rol from './Rol.route';
 import Rating from './Rating.route';
 import Publicity from './Publicity.route';
+import Keystor from './Keystor.route';
+import Location from './Location.route';
+import Notification from './Notification.route';
+import FAQ from './FAQ.route';
+import { KeystorActions } from '@actions/Keystor/Keystor.action';
 
 const routes: { path: string, router: Function }[] = [
     {
@@ -72,6 +77,18 @@ const routes: { path: string, router: Function }[] = [
     },
     {
         path: '/Publicity', router: Publicity
+    },
+    {
+        path: '/Keystor', router: Keystor
+    },
+    {
+        path: '/Location', router: Location
+    },
+    {
+        path: '/Notification', router: Notification
+    },
+    {
+        path: '/FAQ', router: FAQ
     }
 
 ];

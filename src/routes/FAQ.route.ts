@@ -1,21 +1,21 @@
 'use strict';
 let express = require('express');
 let router = express.Router();
-let TAG = "UserEvent";
+let TAG = "FAQ";
 import { logger } from '@services/logger';
 import {
     FAILURE_CODE, INVALID_PARAMETER_MESSAGE,
     UNEXPECTED_ERROR_MESSAGE, TRY_ERROR_MESSAGE,
     BAD_REQUEST_MESSAGE, MISSING_FIELD_MESSAGE
 } from '@shared/constants';
-import { UserEventActions } from '@actions/User/UserEvent.action';
+import { FAQActions } from '@actions/FAQ/FAQ.action';
 
-const userEventActions = new UserEventActions();
+const faqActions = new FAQActions();
 
 router.get('/', async (req, res) => {
     try {
         let where = { active: true };
-        const users = await userEventActions.getAll(where);
+        const users = await faqActions.getAll(where);
         res.json(users);
     } catch (e) {
         res.status(500).json({ message: UNEXPECTED_ERROR_MESSAGE });
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
 router.get('/getBy', async (req, res) => {
     try {
-
+     
         const validParams = ['id'];
         for (let param in req.query) {
             if (!validParams.includes(param)) {
@@ -37,7 +37,7 @@ router.get('/getBy', async (req, res) => {
             }
         }
         const id = req.query['id'];
-        const users = await userEventActions.getById(id);
+        const users = await faqActions.getById(id);
         res.json(users);
     } catch (e) {
         res.status(500).json({ message: UNEXPECTED_ERROR_MESSAGE });
@@ -50,13 +50,8 @@ router.post('/create', async (req, res) => {
     try {
         if (req.body) {
             const requiredParams = [
-                'user',
-                'name',
-                'lastName',
-                'secondLastName',
-                'email',
-                'locationID',
-                'rolID']
+                'question',
+                'answer'];
             for (let i of requiredParams) {
                 if (!Object.keys(req.body).find(item => {
                     return item === i
@@ -64,18 +59,9 @@ router.post('/create', async (req, res) => {
                     return res.status(400).json({ message: MISSING_FIELD_MESSAGE + i });
                 }
             }
-            const result = await userEventActions.create(
-                req.body.user,
-                req.body.name,
-                req.body.lastName,
-                req.body.secondLastName,
-                req.body.email,
-                req.body.locationID,
-                req.body.rolID,
-                req.body.phone,
-                req.body.personalID,
-                req.body.events
-            );
+            const result = await faqActions.create(
+                req.body.question,
+                req.body.answer);
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });
@@ -98,7 +84,7 @@ router.put('/', async (req, res) => {
                     return res.status(400).json({ message: MISSING_FIELD_MESSAGE + i });
                 }
             }
-            const result = await userEventActions.update(
+            const result = await faqActions.update(
                 req.body.id,
                 req.body.values);
             res.json(result);
@@ -123,7 +109,7 @@ router.delete('/', async (req, res) => {
                     return res.status(400).json({ message: MISSING_FIELD_MESSAGE + i });
                 }
             }
-            const result = await userEventActions.delete(req.body.id);
+            const result = await faqActions.delete(req.body.id);
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });

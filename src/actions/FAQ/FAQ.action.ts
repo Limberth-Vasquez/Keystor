@@ -15,7 +15,7 @@ let TAG = "FAQ";
 export class FAQActions {
     public verifications: FAQModel[];
 
-    async create(question, answer, ) {
+    async create(question, answer ) {
         logger.info('action=create collection ' + TAG);
         try {
             await fAQRepository.create(question, answer);
@@ -41,6 +41,7 @@ export class FAQActions {
         _id = new ObjectId(_id);
         let currentModel = new FAQModel();
         this.verifications = await fAQRepository.find({ _id });
+        currentModel = this.verifications.shift();
         try {
             if (currentModel && currentModel.active)
                 return { valid: true, code: SUCCESS_CODE, data: currentModel };
