@@ -5,10 +5,18 @@ class PublicityRepository extends Repository {
     constructor() {
         super('Publicity');
     }
-    create = async (title: string, photo: string, link?: string, photo2?: string, photo3?: string):
+    create = async (title: string,
+        photo: string,
+        link?: string,
+        photo2?: string,
+        photo3?: string):
         Promise<any> => {
         let active = true;
-        let data = { title, photo ,active};
+        let data = {
+            title,
+            photo,
+            active
+        };
         if (link)
             data['link'] = link;
         if (photo2)

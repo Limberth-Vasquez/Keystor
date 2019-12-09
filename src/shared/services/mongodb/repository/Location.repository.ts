@@ -5,10 +5,21 @@ class LocationRepository extends Repository {
     constructor() {
         super('Location');
     }
-    create = async (pointX: string, pointY: string, name:string, address:string):
+    create = async (pointX: string,
+        pointY: string,
+        name: string,
+        address: string
+    ):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ pointX, pointY,name,address, active });
+        let data = {
+            pointX,
+            pointY,
+            name,
+            address,
+            active
+        };
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<LocationModel[]> => await super.find(where);
     async update(set: object, where: object): Promise<any> {

@@ -5,27 +5,27 @@ class RatingRepository extends Repository {
     constructor() {
         super('Rating');
     }
-    create = async (
-        description: string,
-        calification: number, 
-        isPublic: boolean, 
-        idWhoCreateCalification: string, 
-        idRolWhoCreateCalification: string, 
-        idWhoReceiveCalification: string, 
+    create = async (description: string,
+        calification: number,
+        isPublic: boolean,
+        idWhoCreateCalification: string,
+        idRolWhoCreateCalification: string,
+        idWhoReceiveCalification: string,
         idRolWhoReceiveCalification: string
-        ):
+    ):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ 
-            description, 
-            calification, 
-            isPublic, 
+        let data = {
+            description,
+            calification,
+            isPublic,
             idWhoCreateCalification,
             idRolWhoCreateCalification,
             idWhoReceiveCalification,
-            idRolWhoReceiveCalification, 
-            active 
-        });
+            idRolWhoReceiveCalification,
+            active
+        };
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<RatingModel[]> => await super.find(where);
 

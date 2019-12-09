@@ -18,30 +18,30 @@ export class ContractActions {
     private contract: ContractModel[];
 
     async create(
-        contractId, 
-        warehouseId, 
-        userClientID, 
-        name, 
-        createDate, 
+        contractId,
+        warehouseId,
+        userClientID,
+        name,
+        createDate,
         endDate,
-        costValue, 
-        typeService, 
-        status, 
-        description, 
+        costValue,
+        typeService,
+        status,
+        description,
         aprovedKeystor?) {
         logger.info('action=create collection ' + TAG);
         try {
             await contractRepository.create(
-                contractId, 
+                contractId,
                 warehouseId,
                 userClientID,
                 name,
-                createDate, 
+                createDate,
                 endDate,
-                costValue, 
-                typeService, 
-                status, 
-                description, 
+                costValue,
+                typeService,
+                status,
+                description,
                 aprovedKeystor);
             return { valid: true, code: SUCCESS_CODE, message: TAG + SUCCESS_CREATED_MESSAGE };
         } catch (error) {

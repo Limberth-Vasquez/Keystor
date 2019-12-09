@@ -15,10 +15,10 @@ let TAG = "Notification";
 export class NotificationActions {
     public verifications: NotificationModel[];
 
-    async create(userNotify, userNotified,seenByUser,eventId?,warehouseId?) {
+    async create(userNotify, userNotified, seenByUser, eventId?, warehouseId?) {
         logger.info('action=create collection ' + TAG);
         try {
-            await notificationRepository.create(userNotify, userNotified,seenByUser,eventId,warehouseId);
+            await notificationRepository.create(userNotify, userNotified, seenByUser, eventId, warehouseId);
             return { valid: true, code: SUCCESS_CODE, message: TAG + SUCCESS_CREATED_MESSAGE };
         } catch (error) {
             logger.error(error);
@@ -49,8 +49,7 @@ export class NotificationActions {
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            
-            return { valid: false, code: ERROR_CODE, message: error};
+            return { valid: false, code: ERROR_CODE, message: error };
         }
     }
 

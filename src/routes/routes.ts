@@ -1,4 +1,3 @@
-
 import indexRoute from './index.route';
 import VerificationKeystorLog from './VerificationKeystorLog.route';
 import Contract from './Contract.route';
@@ -21,7 +20,6 @@ import Keystor from './Keystor.route';
 import Location from './Location.route';
 import Notification from './Notification.route';
 import FAQ from './FAQ.route';
-import { KeystorActions } from '@actions/Keystor/Keystor.action';
 
 const routes: { path: string, router: Function }[] = [
     {

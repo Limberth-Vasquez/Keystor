@@ -9,7 +9,12 @@ class TermsAndConditionsRepository extends Repository {
     create = async (title: string, description: string):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ title, description, active });
+        let data = {
+            title,
+            description,
+            active
+        };
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<TermsAndConditionsModel[]> => await super.find(where);
 

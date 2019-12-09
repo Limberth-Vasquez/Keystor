@@ -7,8 +7,7 @@ class UserEventRepository extends Repository {
     constructor() {
         super('UserEvent');
     }
-    create = async (
-        user: string,
+    create = async (user: string,
         name: string,
         lastName: string,
         secondLastName: string,
@@ -34,11 +33,11 @@ class UserEventRepository extends Repository {
             data['phone'] = phone;
 
         if (personalID)
-        data['personalID'] = personalID;
+            data['personalID'] = personalID;
 
         if (events)
-            data['pheventsone'] = events;
-            
+            data['events'] = events;
+
         await super.insertOne(data);
     }
     find = async (where: object): Promise<UserEventModel[]> => await super.find(where);

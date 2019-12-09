@@ -39,17 +39,17 @@ export class VerificationKeystorLogActions {
     async getById(_id: string) {
         logger.info('action=getById collection ' + TAG);
         _id = new ObjectId(_id);
-        let currentVerification = new VerificationKeystorLogModel();
+        let currentModel = new VerificationKeystorLogModel();
         this.verifications = await verificationKeystorLogRepository.find({ _id });
-        currentVerification = this.verifications.shift();
+        currentModel = this.verifications.shift();
         try {
-            if (currentVerification && currentVerification.active)
-                return { valid: true, code: SUCCESS_CODE, data: currentVerification };
+            if (currentModel && currentModel.active)
+                return { valid: true, code: SUCCESS_CODE, data: currentModel };
             else
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            return { valid: false, code: ERROR_CODE, message: error};
+            return { valid: false, code: ERROR_CODE, message: error };
         }
     }
 

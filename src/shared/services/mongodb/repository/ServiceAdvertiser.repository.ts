@@ -5,10 +5,19 @@ class ServiceAdvertiserRepository extends Repository {
     constructor() {
         super('ServiceAdvertiser');
     }
-    create = async (advertiserID: string, name: string, description: string, validateKeystor?: boolean):
+    create = async (advertiserID: string,
+        name: string,
+        description: string,
+        validateKeystor?: boolean
+    ):
         Promise<any> => {
         let active = true;
-        let data = { advertiserID, name, description, active };
+        let data = {
+            advertiserID,
+            name,
+            description,
+            active
+        };
         if (validateKeystor)
             data['validateKeystor'] = validateKeystor;
         await super.insertOne(data);

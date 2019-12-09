@@ -3,8 +3,8 @@ import {
     SUCCESS_CODE, SUCCESS_CREATED_MESSAGE,
     FAILURE_CODE, FAILURE_CREATED_MESSAGE,
     FAILURE_FOUND_MESSAGE, SUCCESS_UPDATED_MESSAGE,
-    FAILURE_UPDATED_MESSAGE,SUCCESS_DELETED_MESSAGE,
-    FAILURE_DELETED_MESSAGE,ERROR_CODE
+    FAILURE_UPDATED_MESSAGE, SUCCESS_DELETED_MESSAGE,
+    FAILURE_DELETED_MESSAGE, ERROR_CODE
 } from "@shared/constants";
 import { logger } from "@shared/services/logger";
 import { ContractStatusModel } from "@shared/services/mongodb/model/ContractStatus.model";

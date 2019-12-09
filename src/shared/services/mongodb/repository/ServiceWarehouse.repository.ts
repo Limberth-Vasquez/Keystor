@@ -6,10 +6,19 @@ class ServicesWarehouseRepository extends Repository {
     constructor() {
         super('ServicesWarehouse');
     }
-    create = async (description: string, typeServiceId: TypeServiceModel, wareHouseId: any, validateKeystor?: boolean):
+    create = async (description: string,
+        typeServiceId: TypeServiceModel,
+        wareHouseId: any,
+        validateKeystor?: boolean
+    ):
         Promise<any> => {
         let active = true;
-        let data = { description, typeServiceId, wareHouseId, active };
+        let data = {
+            description,
+            typeServiceId,
+            wareHouseId,
+            active
+        };
         if (validateKeystor)
             data['validateKeystor'] = validateKeystor;
         await super.insertOne(data);

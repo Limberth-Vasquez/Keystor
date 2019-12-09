@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
 router.get('/getBy', async (req, res) => {
     try {
-     
+
         const validParams = ['id'];
         for (let param in req.query) {
             if (!validParams.includes(param)) {
@@ -51,7 +51,7 @@ router.post('/create', async (req, res) => {
         if (req.body) {
             const requiredParams = [
                 'status'
-                ];
+            ];
             for (let i of requiredParams) {
                 if (!Object.keys(req.body).find(item => {
                     return item === i
@@ -61,7 +61,7 @@ router.post('/create', async (req, res) => {
             }
             const result = await contractStatusActions.create(
                 req.body.status
-                );
+            );
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });

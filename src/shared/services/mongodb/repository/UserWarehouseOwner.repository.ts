@@ -7,8 +7,7 @@ class UserWarehouseOwnerRepository extends Repository {
     constructor() {
         super('UserWarehouseOwner');
     }
-    create = async (
-        user: string,
+    create = async (user: string,
         name: string,
         lastName: string,
         secondLastName: string,

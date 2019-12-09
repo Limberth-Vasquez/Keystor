@@ -15,10 +15,10 @@ let TAG = "Location";
 export class LocationActions {
     public verifications: LocationModel[];
 
-    async create(pointX, pointY,name,address) {
+    async create(pointX, pointY, name, address) {
         logger.info('action=create collection ' + TAG);
         try {
-            await locationRepository.create(pointX, pointY,name,address);
+            await locationRepository.create(pointX, pointY, name, address);
             return { valid: true, code: SUCCESS_CODE, message: TAG + SUCCESS_CREATED_MESSAGE };
         } catch (error) {
             logger.error(error);
@@ -49,7 +49,7 @@ export class LocationActions {
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            return { valid: false, code: ERROR_CODE, message: error};
+            return { valid: false, code: ERROR_CODE, message: error };
         }
     }
 

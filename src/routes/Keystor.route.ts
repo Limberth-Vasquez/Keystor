@@ -64,7 +64,7 @@ router.post('/create', async (req, res) => {
                     return res.status(400).json({ message: MISSING_FIELD_MESSAGE + i });
                 }
             }
-            const result = await keystorActions.create(                
+            const result = await keystorActions.create(
                 req.body.user,
                 req.body.name,
                 req.body.lastName,

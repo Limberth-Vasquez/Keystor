@@ -6,8 +6,7 @@ class WarehouseRepository extends Repository {
     constructor() {
         super('Warehouse');
     }
-    create = async (
-        name: string,
+    create = async (name: string,
         email: string,
         locationID: LocationModel,
         country: string,
@@ -51,7 +50,7 @@ class WarehouseRepository extends Repository {
 
         if (photo3)
             data['photo3'] = photo3;
-            
+
         await super.insertOne(data);
     }
     find = async (where: object): Promise<WarehouseModel[]> => await super.find(where);

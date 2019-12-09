@@ -1,6 +1,6 @@
 export class PublicityModel {
     public _id?: string;
-    public Title: string;
+    public title: string;
     public description: string;
     public link?: string;
     public photo: string;

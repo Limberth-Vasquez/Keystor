@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
 router.get('/getBy', async (req, res) => {
     try {
-     
+
         const validParams = ['id'];
         for (let param in req.query) {
             if (!validParams.includes(param)) {
@@ -50,7 +50,7 @@ router.post('/create', async (req, res) => {
     try {
         if (req.body) {
             const requiredParams = [
-                'userNotify', 
+                'userNotify',
                 'userNotified',
                 'seenByUser'];
             for (let i of requiredParams) {
@@ -63,7 +63,9 @@ router.post('/create', async (req, res) => {
             const result = await notificationActions.create(
                 req.body.userNotify,
                 req.body.userNotified,
-                req.body.seenByUser);
+                req.body.seenByUser,
+                req.body.eventId, 
+                req.body.warehouseId);
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });

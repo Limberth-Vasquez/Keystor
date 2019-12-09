@@ -75,7 +75,7 @@ router.post('/create', async (req, res) => {
                 req.body.phone,
                 req.body.personalID,
                 req.body.warehouses
-                );
+            );
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });

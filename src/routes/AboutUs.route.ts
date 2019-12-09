@@ -26,7 +26,6 @@ router.get('/', async (req, res) => {
 
 router.get('/getBy', async (req, res) => {
     try {
-     
         const validParams = ['id'];
         for (let param in req.query) {
             if (!validParams.includes(param)) {

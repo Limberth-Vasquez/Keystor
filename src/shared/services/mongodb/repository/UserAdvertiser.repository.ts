@@ -7,8 +7,7 @@ class UserAdvertiserRepository extends Repository {
     constructor() {
         super('UserAdvertiser');
     }
-    create = async (
-        user: string,
+    create = async (user: string,
         name: string,
         lastName: string,
         secondLastName: string,

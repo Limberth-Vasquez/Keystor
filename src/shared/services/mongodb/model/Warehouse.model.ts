@@ -14,7 +14,7 @@ export class WarehouseModel {
     public fees1: Float32Array;
     public fees2?: Float32Array;
     public fees3?: Float32Array;
-    public photo: string;
+    public photo?: string;
     public photo2?: string;
     public photo3?: string;
     public active: boolean;

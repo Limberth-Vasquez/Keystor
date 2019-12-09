@@ -49,7 +49,7 @@ export class TypeServiceActions {
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            return { valid: false, code: ERROR_CODE, message: error};
+            return { valid: false, code: ERROR_CODE, message: error };
         }
     }
 

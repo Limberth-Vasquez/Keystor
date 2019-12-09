@@ -22,25 +22,25 @@ export class KeystorActions {
         secondLastName,
         email,
         locationID,
-        rolID,       
+        rolID,
         phone?,
         personalID?,
         verificationLogs?
     ) {
         logger.info('action=create collection ' + TAG);
         try {
-            await keystorRepository.create( 
+            await keystorRepository.create(
                 user,
                 name,
                 lastName,
                 secondLastName,
                 email,
                 locationID,
-                rolID,       
+                rolID,
                 phone,
                 personalID,
                 verificationLogs
-                );
+            );
             return { valid: true, code: SUCCESS_CODE, message: TAG + SUCCESS_CREATED_MESSAGE };
         } catch (error) {
             logger.error(error);
@@ -71,7 +71,7 @@ export class KeystorActions {
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            return { valid: false, code: ERROR_CODE, message: error};
+            return { valid: false, code: ERROR_CODE, message: error };
         }
     }
 

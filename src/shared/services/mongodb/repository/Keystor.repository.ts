@@ -7,8 +7,7 @@ class KeystorRepository extends Repository {
     constructor() {
         super('Keystor');
     }
-    create = async (
-        user: string,
+    create = async (user: string,
         name: string,
         lastName: string,
         secondLastName: string,
@@ -35,7 +34,7 @@ class KeystorRepository extends Repository {
             data['phone'] = phone;
 
         if (personalID)
-        data['personalID'] = personalID;
+            data['personalID'] = personalID;
 
         if (verificationLogs)
             data['verificationLogs'] = verificationLogs;

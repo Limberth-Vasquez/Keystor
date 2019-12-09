@@ -6,10 +6,14 @@ class TypeServiceRepository extends Repository {
         super('TypeService');
     }
     create = async (name: string, ):
-    Promise<any> => {
-    let active = true;
-    await super.insertOne({ name, active });
-}
+        Promise<any> => {
+        let active = true;
+        let data = {
+            name,
+            active
+        };
+        await super.insertOne(data);
+    }
     find = async (where: object): Promise<TypeServiceModel[]> => await super.find(where);
 
     async update(set: object, where: object): Promise<any> {

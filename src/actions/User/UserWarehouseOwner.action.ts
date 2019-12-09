@@ -60,11 +60,11 @@ export class UserWarehouseOwnerActions {
     async getById(_id: string) {
         logger.info('action=getById collection ' + TAG);
         _id = new ObjectId(_id);
-        let currentVerification = new UserWarehouseOwnerModel();
+        let currentModel = new UserWarehouseOwnerModel();
         this.verifications = await userWarehouseOwnerRepository.find({ _id });
-        currentVerification = this.verifications.shift();
-        if (currentVerification.active)
-            return { valid: true, code: SUCCESS_CODE, data: currentVerification };
+        currentModel = this.verifications.shift();
+        if (currentModel && currentModel.active)
+            return { valid: true, code: SUCCESS_CODE, data: currentModel };
         else
             return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
     }

@@ -7,8 +7,7 @@ class ContractRepository extends Repository {
     constructor() {
         super('Contract');
     }
-    create = async (
-        contractId: string,
+    create = async (contractId: string,
         warehouseId: any,
         userClientID: any,
         name: string,
@@ -35,9 +34,9 @@ class ContractRepository extends Repository {
             description,
             active
         };
-        if (aprovedKeystor)
+        if (aprovedKeystor) {
             data['aprovedKeystor'] = aprovedKeystor;
-            
+        }
         await super.insertOne(data);
     }
     find = async (where: object): Promise<ContractModel[]> => await super.find(where);

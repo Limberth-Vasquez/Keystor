@@ -5,8 +5,7 @@ class EventRepository extends Repository {
     constructor() {
         super('Event');
     }
-    create = async (
-        nameEvent: string,
+    create = async (nameEvent: string,
         email: string,
         phone: string,
         locationID: any,

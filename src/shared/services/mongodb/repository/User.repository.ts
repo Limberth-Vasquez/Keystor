@@ -7,30 +7,34 @@ class UserRepository extends Repository {
     constructor() {
         super('User');
     }
-    create = async (
-        user: string,
+    create = async (user: string,
         name: string,
         lastName: string,
         secondLastName: string,
         email: string,
         locationID: LocationModel,
-        rolID: RolModel,       
+        rolID: RolModel,
         phone?: string,
         personalID?: string):
         Promise<any> => {
         let active = true;
-        await super.insertOne({
+        let data = {
             user,
             name,
             lastName,
             secondLastName,
             email,
             locationID,
-            rolID,       
-            phone,
-            personalID,
+            rolID,
             active
-        });
+        };
+        if (phone)
+            data['phone'] = phone;
+
+        if (personalID)
+            data['personalID'] = personalID;
+
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<UserModel[]> => await super.find(where);
 

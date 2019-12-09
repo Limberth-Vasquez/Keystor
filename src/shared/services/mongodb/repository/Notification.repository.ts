@@ -5,12 +5,20 @@ class NotificationRepository extends Repository {
     constructor() {
         super('Notification');
     }
-    create = async (userNotify: any, userNotified: any, seenByUser: string, eventId?: any, warehouseId?: any):
+    create = async (userNotify: any,
+        userNotified: any,
+        seenByUser: string,
+        eventId?: any,
+        warehouseId?: any
+    ):
         Promise<any> => {
         let active = true;
         let data = {
-            userNotify, userNotified, seenByUser, active
-        }
+            userNotify,
+            userNotified,
+            seenByUser,
+            active
+        };
         if (eventId)
             data['eventId'] = eventId;
         if (warehouseId)

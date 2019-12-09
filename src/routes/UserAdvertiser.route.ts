@@ -73,7 +73,7 @@ router.post('/create', async (req, res) => {
                 req.body.rolID,
                 req.body.companyName,
                 req.body.idCompany,
-                req.body.phone ,
+                req.body.phone,
                 req.body.personalID,
                 req.body.servicesAdvertises);
             res.json(result);

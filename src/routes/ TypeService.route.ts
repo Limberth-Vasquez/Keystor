@@ -56,8 +56,7 @@ router.post('/create', async (req, res) => {
                     return res.status(400).json({ message: MISSING_FIELD_MESSAGE + i });
                 }
             }
-            const result = await typeServiceActions.create(
-                req.body.name);
+            const result = await typeServiceActions.create(req.body.name);
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });

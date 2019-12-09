@@ -15,7 +15,7 @@ let TAG = "FAQ";
 export class FAQActions {
     public verifications: FAQModel[];
 
-    async create(question, answer ) {
+    async create(question, answer) {
         logger.info('action=create collection ' + TAG);
         try {
             await fAQRepository.create(question, answer);
@@ -49,7 +49,7 @@ export class FAQActions {
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            return { valid: false, code: ERROR_CODE, message: error};
+            return { valid: false, code: ERROR_CODE, message: error };
         }
     }
 

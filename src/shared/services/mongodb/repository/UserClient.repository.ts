@@ -7,8 +7,7 @@ class UserClientRepository extends Repository {
     constructor() {
         super('UserClient');
     }
-    create = async (
-        user: string,
+    create = async (user: string,
         name: string,
         lastName: string,
         secondLastName: string,

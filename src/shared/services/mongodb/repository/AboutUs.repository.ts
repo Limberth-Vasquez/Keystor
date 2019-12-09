@@ -8,14 +8,19 @@ class AboutUsRepository extends Repository {
     create = async (title: string, description: string):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ title, description, active });
+        let data = {
+            title,
+            description,
+            active
+        };
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<AboutUsModel[]> => await super.find(where);
 
     async update(set: object, where: object): Promise<any> {
         return await super.updateOne(set, where)
     }
-    
+
     delete = async (_id: string):
         Promise<any> => {
         _id = new ObjectId(_id)

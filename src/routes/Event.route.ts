@@ -77,7 +77,7 @@ router.post('/create', async (req, res) => {
                 req.body.createDate,
                 req.body.startDate,
                 req.body.endDate
-                );
+            );
             res.json(result);
         } else {
             res.status(400).json({ message: BAD_REQUEST_MESSAGE });

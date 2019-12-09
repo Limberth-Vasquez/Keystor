@@ -8,7 +8,12 @@ class FAQRepository extends Repository {
     create = async (question: string, answer: string):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ question, answer, active });
+        let data = {
+            question,
+            answer,
+            active
+        };
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<FAQModel[]> => await super.find(where);
     async update(set: object, where: object): Promise<any> {

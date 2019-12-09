@@ -3,7 +3,7 @@ import {
     SUCCESS_CODE, SUCCESS_CREATED_MESSAGE,
     FAILURE_CODE, FAILURE_CREATED_MESSAGE,
     FAILURE_FOUND_MESSAGE, SUCCESS_UPDATED_MESSAGE,
-    FAILURE_UPDATED_MESSAGE,SUCCESS_DELETED_MESSAGE,
+    FAILURE_UPDATED_MESSAGE, SUCCESS_DELETED_MESSAGE,
     FAILURE_DELETED_MESSAGE,
     ERROR_CODE
 } from "@shared/constants";
@@ -19,7 +19,7 @@ export class EventActions {
     private Event: EventModel[];
 
     async create(
-        nameEvent, 
+        nameEvent,
         email,
         phone,
         locationID,
@@ -34,8 +34,8 @@ export class EventActions {
         logger.info('action=create collection ' + TAG);
         try {
             await eventRepository.create(
-                nameEvent, 
-                email, 
+                nameEvent,
+                email,
                 phone,
                 locationID,
                 idUserEvent,
@@ -76,7 +76,7 @@ export class EventActions {
                 return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
         } catch (error) {
             logger.error(error);
-            return { valid: false, code: ERROR_CODE, message: error};
+            return { valid: false, code: ERROR_CODE, message: error };
         }
     }
 

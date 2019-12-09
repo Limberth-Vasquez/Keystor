@@ -8,7 +8,11 @@ class RolRepository extends Repository {
     create = async (name: string):
         Promise<any> => {
         let active = true;
-        await super.insertOne({ name, active });
+        let data = {
+            name,
+            active
+        };
+        await super.insertOne(data);
     }
     find = async (where: object): Promise<RolModel[]> => await super.find(where);
 

@@ -17,27 +17,27 @@ export class UserActions {
 
     async create(
         user,
-            name,
-            lastName,
-            secondLastName,
-            email,
-            locationID,
-            rolID,       
-            phone?,
-            personalID?
+        name,
+        lastName,
+        secondLastName,
+        email,
+        locationID,
+        rolID,
+        phone?,
+        personalID?
     ) {
         logger.info('action=create collection ' + TAG);
         try {
-            await userRepository.create(                
+            await userRepository.create(
                 user,
-            name,
-            lastName,
-            secondLastName,
-            email,
-            locationID,
-            rolID,       
-            phone,
-            personalID
+                name,
+                lastName,
+                secondLastName,
+                email,
+                locationID,
+                rolID,
+                phone,
+                personalID
             );
             return { valid: true, code: SUCCESS_CODE, message: TAG + SUCCESS_CREATED_MESSAGE };
         } catch (error) {
@@ -59,11 +59,11 @@ export class UserActions {
     async getById(_id: string) {
         logger.info('action=getById collection ' + TAG);
         _id = new ObjectId(_id);
-        let currentVerification = new UserModel();
+        let currentModel = new UserModel();
         this.verifications = await userRepository.find({ _id });
-        currentVerification = this.verifications.shift();
-        if (currentVerification.active)
-            return { valid: true, code: SUCCESS_CODE, data: currentVerification };
+        currentModel = this.verifications.shift();
+        if (currentModel && currentModel.active)
+            return { valid: true, code: SUCCESS_CODE, data: currentModel };
         else
             return { valid: false, code: FAILURE_CODE, message: FAILURE_FOUND_MESSAGE + TAG };
     }
